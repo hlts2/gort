@@ -131,12 +131,12 @@ type People struct {
 	Age  int
 }
 
-type PeoplesSlice []People
-type PeoplesArray [4]People
+type PeopleSlice []People
+type PeopleArray [4]People
 
 func TestSortForStructArray(t *testing.T) {
-	getPeoplesArrayData := func() PeoplesArray {
-		return PeoplesArray{
+	getPeopleArrayData := func() PeopleArray {
+		return PeopleArray{
 			People{
 				Name: "a",
 				Age:  2,
@@ -157,16 +157,16 @@ func TestSortForStructArray(t *testing.T) {
 	}
 
 	tests := []struct {
-		array    PeoplesArray
+		array    PeopleArray
 		order    Order
 		len      int
-		expected PeoplesArray
+		expected PeopleArray
 	}{
 		{
-			array: getPeoplesArrayData(),
+			array: getPeopleArrayData(),
 			order: Desc,
 			len:   4,
-			expected: PeoplesArray{
+			expected: PeopleArray{
 				People{
 					Name: "b",
 					Age:  30,
@@ -186,10 +186,10 @@ func TestSortForStructArray(t *testing.T) {
 			},
 		},
 		{
-			array: getPeoplesArrayData(),
+			array: getPeopleArrayData(),
 			order: Desc,
 			len:   2,
-			expected: PeoplesArray{
+			expected: PeopleArray{
 				People{
 					Name: "b",
 					Age:  30,
@@ -209,10 +209,10 @@ func TestSortForStructArray(t *testing.T) {
 			},
 		},
 		{
-			array: getPeoplesArrayData(),
+			array: getPeopleArrayData(),
 			order: Asc,
 			len:   4,
-			expected: PeoplesArray{
+			expected: PeopleArray{
 				People{
 					Name: "c",
 					Age:  1,
@@ -232,10 +232,10 @@ func TestSortForStructArray(t *testing.T) {
 			},
 		},
 		{
-			array: getPeoplesArrayData(),
+			array: getPeopleArrayData(),
 			order: Asc,
 			len:   2,
-			expected: PeoplesArray{
+			expected: PeopleArray{
 				People{
 					Name: "a",
 					Age:  2,
@@ -276,8 +276,8 @@ func TestSortForStructArray(t *testing.T) {
 	}
 }
 func TestSortForStructSlice(t *testing.T) {
-	getPeoplesSliceData := func() PeoplesSlice {
-		return PeoplesSlice{
+	getPeopleSliceData := func() PeopleSlice {
+		return PeopleSlice{
 			People{
 				Name: "a",
 				Age:  2,
@@ -298,16 +298,16 @@ func TestSortForStructSlice(t *testing.T) {
 	}
 
 	tests := []struct {
-		slice    PeoplesSlice
+		slice    PeopleSlice
 		order    Order
 		len      int
-		expected PeoplesSlice
+		expected PeopleSlice
 	}{
 		{
-			slice: getPeoplesSliceData(),
+			slice: getPeopleSliceData(),
 			order: Desc,
 			len:   4,
-			expected: PeoplesSlice{
+			expected: PeopleSlice{
 				People{
 					Name: "b",
 					Age:  30,
@@ -327,10 +327,10 @@ func TestSortForStructSlice(t *testing.T) {
 			},
 		},
 		{
-			slice: getPeoplesSliceData(),
+			slice: getPeopleSliceData(),
 			order: Desc,
 			len:   2,
-			expected: PeoplesSlice{
+			expected: PeopleSlice{
 				People{
 					Name: "b",
 					Age:  30,
@@ -350,10 +350,10 @@ func TestSortForStructSlice(t *testing.T) {
 			},
 		},
 		{
-			slice: getPeoplesSliceData(),
+			slice: getPeopleSliceData(),
 			order: Asc,
 			len:   4,
-			expected: PeoplesSlice{
+			expected: PeopleSlice{
 				People{
 					Name: "c",
 					Age:  1,
@@ -373,10 +373,10 @@ func TestSortForStructSlice(t *testing.T) {
 			},
 		},
 		{
-			slice: getPeoplesSliceData(),
+			slice: getPeopleSliceData(),
 			order: Asc,
 			len:   2,
-			expected: PeoplesSlice{
+			expected: PeopleSlice{
 				People{
 					Name: "a",
 					Age:  2,
