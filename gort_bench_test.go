@@ -38,7 +38,6 @@ func BenchmarkForWithSlice(b *testing.B) {
 }
 
 func BenchmarkDefaultSortWithSlice(b *testing.B) {
-
 	data := make([]int, 10)
 
 	b.ResetTimer()
