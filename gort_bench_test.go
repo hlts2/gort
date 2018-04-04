@@ -5,7 +5,7 @@ import (
 	"testing"
 )
 
-func BenchmarkGortWithArray(b *testing.B) {
+func BenchmarkGortIntArray(b *testing.B) {
 	data := make([]int, 10)
 
 	b.ResetTimer()
@@ -21,7 +21,7 @@ func BenchmarkGortWithArray(b *testing.B) {
 	}
 }
 
-func BenchmarkForWithSlice(b *testing.B) {
+func BenchmarkGortIntSlice(b *testing.B) {
 	data := make([]int, 10)
 
 	b.ResetTimer()
@@ -37,7 +37,7 @@ func BenchmarkForWithSlice(b *testing.B) {
 	}
 }
 
-func BenchmarkDefaultSortWithSlice(b *testing.B) {
+func BenchmarkDefaultSortIntSlice(b *testing.B) {
 	data := make([]int, 10)
 
 	b.ResetTimer()

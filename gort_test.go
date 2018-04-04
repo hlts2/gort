@@ -12,7 +12,7 @@ const (
 	Asc
 )
 
-func TestSortForIntArray(t *testing.T) {
+func TestSortIntArray(t *testing.T) {
 	getArrayTestData := func() [4]int {
 		return [4]int{-20, 2, 1, -10}
 	}
@@ -69,7 +69,7 @@ func TestSortForIntArray(t *testing.T) {
 	}
 }
 
-func TestSortForIntSlice(t *testing.T) {
+func TestSortIntSlice(t *testing.T) {
 	getTestSliceData := func() []int {
 		return []int{-20, 2, 1, -10}
 	}
@@ -134,7 +134,7 @@ type People struct {
 type PeopleSlice []People
 type PeopleArray [4]People
 
-func TestSortForStructArray(t *testing.T) {
+func TestSortStructArray(t *testing.T) {
 	getPeopleArrayData := func() PeopleArray {
 		return PeopleArray{
 			People{
@@ -275,7 +275,7 @@ func TestSortForStructArray(t *testing.T) {
 		}
 	}
 }
-func TestSortForStructSlice(t *testing.T) {
+func TestSortStructSlice(t *testing.T) {
 	getPeopleSliceData := func() PeopleSlice {
 		return PeopleSlice{
 			People{
