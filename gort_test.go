@@ -134,7 +134,7 @@ type People struct {
 type PeoplesSlice []People
 type PeoplesArray [4]People
 
-func TestSortForArrayStruct(t *testing.T) {
+func TestSortForStructArray(t *testing.T) {
 	getPeoplesArrayData := func() PeoplesArray {
 		return PeoplesArray{
 			People{
