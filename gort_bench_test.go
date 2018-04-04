@@ -5,50 +5,72 @@ import (
 	"testing"
 )
 
+const Len = 100
+
 func BenchmarkGortIntArray(b *testing.B) {
+	b.StopTimer()
+
+	unsorted := make([]int, Len)
+	for i := 0; i < Len; i++ {
+		unsorted[i] = i ^ 0xcccc
+	}
 	data := make([]int, 10)
 
-	b.ResetTimer()
-
 	for i := 0; i < b.N; i++ {
-		for i := 0; i < len(data); i++ {
-			data[i] = i ^ 0xcccc
-		}
+		copy(data, unsorted)
+
+		b.StartTimer()
 
 		Sort(&data, len(data), func(i, j int) bool {
 			return data[i] > data[j]
 		})
+
+		b.StopTimer()
 	}
 }
 
 func BenchmarkGortIntSlice(b *testing.B) {
-	data := make([]int, 10)
+	b.StopTimer()
 
-	b.ResetTimer()
+	unsorted := make([]int, Len)
+	for i := 0; i < Len; i++ {
+		unsorted[i] = i ^ 0xcccc
+	}
+
+	data := make([]int, Len)
 
 	for i := 0; i < b.N; i++ {
-		for i := 0; i < len(data); i++ {
-			data[i] = i ^ 0xcccc
-		}
+		copy(data, unsorted)
+
+		b.StartTimer()
 
 		Sort(&data, len(data), func(i, j int) bool {
 			return data[i] > data[j]
 		})
+
+		b.StopTimer()
 	}
 }
 
 func BenchmarkDefaultSortIntSlice(b *testing.B) {
-	data := make([]int, 10)
+	b.StopTimer()
 
-	b.ResetTimer()
+	unsorted := make([]int, Len)
+	for i := 0; i < Len; i++ {
+		unsorted[i] = i ^ 0xcccc
+	}
+
+	data := make([]int, Len)
 
 	for i := 0; i < b.N; i++ {
-		for i := 0; i < len(data); i++ {
-			data[i] = i ^ 0xcccc
-		}
+		copy(data, unsorted)
+
+		b.StartTimer()
 
 		sort.Slice(data, func(i, j int) bool {
 			return data[i] > data[j]
 		})
+
+		b.StopTimer()
 	}
 }
