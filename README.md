@@ -14,7 +14,7 @@ go get github.com/hlts2/gort
 
 ## Example
 
-### sorting　int array or slice
+### sorting int array or slice
 
 ```go
 
