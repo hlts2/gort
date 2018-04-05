@@ -131,11 +131,10 @@ type People struct {
 	Age  int
 }
 
-type PeopleSlice []People
-type PeopleArray [4]People
-
 func TestSortStructArray(t *testing.T) {
-	getPeopleArrayData := func() PeopleArray {
+	type PeopleArray [4]People
+
+	getPeopleArrayData := func() [4]People {
 		return PeopleArray{
 			People{
 				Name: "a",
@@ -276,6 +275,8 @@ func TestSortStructArray(t *testing.T) {
 	}
 }
 func TestSortStructSlice(t *testing.T) {
+	type PeopleSlice []People
+
 	getPeopleSliceData := func() PeopleSlice {
 		return PeopleSlice{
 			People{
