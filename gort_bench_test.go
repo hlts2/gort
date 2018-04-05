@@ -14,11 +14,11 @@ func BenchmarkGortIntArray(b *testing.B) {
 	for i := 0; i < len(unsorted); i++ {
 		unsorted[i] = i ^ 0xcccc
 	}
-	data := make([]int, 10)
+	var data [LengthOfArrayAndSliceForBenchmarkTest]int
 
 	for i := 0; i < b.N; i++ {
-		for i, v := range unsorted {
-			data[i] = v
+		for j, v := range unsorted {
+			data[j] = v
 		}
 
 		b.StartTimer()
@@ -68,6 +68,7 @@ func BenchmarkGortStructArray(b *testing.B) {
 	}
 
 	var data PeopleArray
+
 	for i := 0; i < b.N; i++ {
 		for j, v := range unsorted {
 			data[j] = v
@@ -78,7 +79,7 @@ func BenchmarkGortStructArray(b *testing.B) {
 		Sort(&data, len(data), func(i, j int) bool {
 			return data[i].Age > data[j].Age
 		})
-		b.StartTimer()
+		b.StopTimer()
 	}
 }
 
@@ -106,7 +107,7 @@ func BenchmarkGortStructSlice(b *testing.B) {
 			return data[i].Age > data[j].Age
 		})
 
-		b.StartTimer()
+		b.StopTimer()
 	}
 }
 
@@ -121,12 +122,42 @@ func BenchmarkDefaultSortIntSlice(b *testing.B) {
 	data := make([]int, LengthOfArrayAndSliceForBenchmarkTest)
 
 	for i := 0; i < b.N; i++ {
-		copy(data, unsorted)
+		for j, v := range unsorted {
+			data[j] = v
+		}
 
 		b.StartTimer()
 
 		sort.Slice(data, func(i, j int) bool {
 			return data[i] > data[j]
+		})
+
+		b.StopTimer()
+	}
+}
+
+func BenchmarkDefaultSortStructSlice(b *testing.B) {
+	b.StopTimer()
+
+	type PeopleSlice []People
+
+	unsorted := make(PeopleSlice, LengthOfArrayAndSliceForBenchmarkTest)
+	for i := 0; i < len(unsorted); i++ {
+		unsorted[i] = People{
+			Name: "",
+			Age:  i ^ 0xcccc,
+		}
+	}
+
+	data := make(PeopleSlice, LengthOfArrayAndSliceForBenchmarkTest)
+
+	for i := 0; i < b.N; i++ {
+		copy(data, unsorted)
+
+		b.StartTimer()
+
+		sort.Slice(data, func(i, j int) bool {
+			return data[i].Age > data[j].Age
 		})
 
 		b.StopTimer()
