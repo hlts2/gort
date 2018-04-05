@@ -18,7 +18,7 @@ func Sort(object interface{}, len int, less func(i, j int) bool) {
 		sort.Slice(rvArray.Slice(0, len).Interface(), less)
 
 	case reflect.Slice:
-		rv := reflect.Indirect(reflect.ValueOf(&object)).Elem().Elem()
-		sort.Slice(rv.Slice(0, len).Interface(), less)
+		rvSlice := reflect.Indirect(reflect.ValueOf(&object)).Elem().Elem()
+		sort.Slice(rvSlice.Slice(0, len).Interface(), less)
 	}
 }

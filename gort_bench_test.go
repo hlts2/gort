@@ -31,6 +31,33 @@ func BenchmarkGortIntArray(b *testing.B) {
 	}
 }
 
+func BenchmarkDefaultSortIntArray(b *testing.B) {
+	b.StopTimer()
+
+	var unsorted [LengthOfArrayAndSliceForBenchmarkTest]int
+	for i := 0; i < len(unsorted); i++ {
+		unsorted[i] = i ^ 0xcccc
+	}
+
+	var data [LengthOfArrayAndSliceForBenchmarkTest]int
+
+	for i := 0; i < b.N; i++ {
+		for j, v := range unsorted {
+			data[j] = v
+		}
+
+		b.StartTimer()
+
+		sliceData := data[:]
+
+		sort.Slice(sliceData, func(i, j int) bool {
+			return sliceData[i] > sliceData[j]
+		})
+
+		b.StopTimer()
+	}
+}
+
 func BenchmarkGortIntSlice(b *testing.B) {
 	b.StopTimer()
 
