@@ -119,5 +119,4 @@ Sort(&slice, 3, func (i, j int) bool {
 })
 
 fmt.Println(slice) //[2, 1, -20, -10]
-
 ```
