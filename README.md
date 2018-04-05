@@ -67,7 +67,7 @@ Sort(&array, len(array), func (i, j int) bool {
     return array[i].Age > array[j].Age
 })
 
-fmt.Println(array) //[People{Name: "b",Age:  30], People{Name: "d",Age:  3], People{Name: "a",Age:  2], People{Name: "c",Age:  1]]
+fmt.Println(array) //[People{Name: "b", Age:  30], People{Name: "d", Age:  3], People{Name: "a", Age:  2], People{Name: "c", Age:  1]]
 
 //when sorting struct slice
 slice := []People{
@@ -93,7 +93,7 @@ Sort(&slice, len(slice), func (i, j int) bool {
     return slice[i].Age > slice[j].Age
 })
 
-fmt.Println(slice) //[People{Name: "b",Age:  30], People{Name: "d",Age:  3], People{Name: "a",Age:  2], People{Name: "c",Age:  1]]
+fmt.Println(slice) //[People{Name: "b", Age:  30], People{Name: "d", Age:  3], People{Name: "a", Age:  2], People{Name: "c", Age:  1]]
 
 ```
 
