@@ -54,6 +54,31 @@ func BenchmarkGortIntSlice(b *testing.B) {
 	}
 }
 
+func BenchmarkDefaultSortIntSlice(b *testing.B) {
+	b.StopTimer()
+
+	unsorted := make([]int, LengthOfArrayAndSliceForBenchmarkTest)
+	for i := 0; i < len(unsorted); i++ {
+		unsorted[i] = i ^ 0xcccc
+	}
+
+	data := make([]int, LengthOfArrayAndSliceForBenchmarkTest)
+
+	for i := 0; i < b.N; i++ {
+		for j, v := range unsorted {
+			data[j] = v
+		}
+
+		b.StartTimer()
+
+		sort.Slice(data, func(i, j int) bool {
+			return data[i] > data[j]
+		})
+
+		b.StopTimer()
+	}
+}
+
 func BenchmarkGortStructArray(b *testing.B) {
 	b.StopTimer()
 
@@ -83,6 +108,43 @@ func BenchmarkGortStructArray(b *testing.B) {
 	}
 }
 
+func BenchmarkDefaultSortStructArray(b *testing.B) {
+	b.StopTimer()
+
+	type PeopleSlice []People
+	type PeopleArray [LengthOfArrayAndSliceForBenchmarkTest]People
+
+	unsorted := make(PeopleSlice, LengthOfArrayAndSliceForBenchmarkTest)
+	for i := 0; i < len(unsorted); i++ {
+		unsorted[i] = People{
+			Name: "",
+			Age:  i ^ 0xcccc,
+		}
+	}
+
+	var data PeopleArray
+
+	for i := 0; i < b.N; i++ {
+		for j, v := range unsorted {
+			data[j] = v
+		}
+
+		b.StartTimer()
+
+		sliceData := data[:]
+
+		sort.Slice(sliceData, func(i, j int) bool {
+			return sliceData[i].Age > sliceData[j].Age
+		})
+
+		for i, v := range sliceData {
+			data[i] = v
+		}
+
+		b.StopTimer()
+	}
+}
+
 func BenchmarkGortStructSlice(b *testing.B) {
 	b.StopTimer()
 
@@ -105,31 +167,6 @@ func BenchmarkGortStructSlice(b *testing.B) {
 
 		Sort(&data, len(data), func(i, j int) bool {
 			return data[i].Age > data[j].Age
-		})
-
-		b.StopTimer()
-	}
-}
-
-func BenchmarkDefaultSortIntSlice(b *testing.B) {
-	b.StopTimer()
-
-	unsorted := make([]int, LengthOfArrayAndSliceForBenchmarkTest)
-	for i := 0; i < len(unsorted); i++ {
-		unsorted[i] = i ^ 0xcccc
-	}
-
-	data := make([]int, LengthOfArrayAndSliceForBenchmarkTest)
-
-	for i := 0; i < b.N; i++ {
-		for j, v := range unsorted {
-			data[j] = v
-		}
-
-		b.StartTimer()
-
-		sort.Slice(data, func(i, j int) bool {
-			return data[i] > data[j]
 		})
 
 		b.StopTimer()
