@@ -5,7 +5,7 @@ import (
 	"sort"
 )
 
-// Sort returns sorted array or slice object
+// Sort array or slice object
 func Sort(object interface{}, len int, less func(i, j int) bool) {
 	switch reflect.TypeOf(object).Elem().Kind() {
 	case reflect.Array:
