@@ -137,8 +137,8 @@ func BenchmarkDefaultSortStructArray(b *testing.B) {
 			return sliceData[i].Age > sliceData[j].Age
 		})
 
-		for i, v := range sliceData {
-			data[i] = v
+		for j, v := range sliceData {
+			data[j] = v
 		}
 
 		b.StopTimer()
