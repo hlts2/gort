@@ -45,22 +45,22 @@ fmt.Println(slice) //[2, 1, -10, -20]
 
 //when sorting struct array
 array := [4]People{
-    People{
-        Name: "a",
-        Age:  2,
-		},
-		People{
-			  Name: "b",
-				Age:  30,
-		},
-		People{
-				Name: "c",
-				Age:  1,
-		},
-		People{
-				Name: "d",
-				Age:  3,
-		},
+	People{
+		Name: "a",
+     	Age:  2,
+	},
+	People{
+		Name: "b",
+		Age:  30,
+	},
+	People{
+		Name: "c",
+		Age:  1,
+	},
+	People{
+		Name: "d",
+		Age:  3,
+	},
 }
 
 Sort(&array, len(array), func (i, j int) bool {
@@ -71,22 +71,22 @@ fmt.Println(array) //[People{Name: "b",Age:  30], People{Name: "d",Age:  3], Peo
 
 //when sorting struct slice
 slice := []People{
-    People{
-        Name: "a",
-        Age:  2,
-		},
-		People{
-			  Name: "b",
-				Age:  30,
-		},
-		People{
-				Name: "c",
-				Age:  1,
-		},
-		People{
-				Name: "d",
-				Age:  3,
-		},
+	People{
+		Name: "a",
+		Age:  2,
+	},
+	People{
+		Name: "b",
+		Age:  30,
+	},
+	People{
+		Name: "c",
+		Age:  1,
+	},
+	People{
+		Name: "d",
+		Age:  3,
+	},
 }
 
 Sort(&slice, len(slice), func (i, j int) bool {
