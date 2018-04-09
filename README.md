@@ -1,7 +1,5 @@
 # gort
-gort is wrapper library of [`sort`][sort] package and supports sorting of slice and array.
-
-[sort]: https://github.com/golang/go/tree/master/src/sort
+gort is a simple library for sorting slices and arrays.
 
 ## Requirement
 Go 1.8+
